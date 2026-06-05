@@ -68,23 +68,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* CUSTOM CURSOR */
-body { cursor: none; }
-#mu-cursor {
-  position: fixed; pointer-events: none; z-index: 9999;
-  width: 10px; height: 10px; border-radius: 50%;
-  background: var(--mu-primary);
-  transform: translate(-50%,-50%);
-  transition: transform 0.08s, width 0.2s, height 0.2s;
-}
-#mu-ring {
-  position: fixed; pointer-events: none; z-index: 9998;
-  width: 36px; height: 36px; border-radius: 50%;
-  border: 1.5px solid rgba(20,159,236,0.4);
-  transform: translate(-50%,-50%);
-  transition: width 0.3s var(--ease), height 0.3s var(--ease), border-color 0.3s;
-}
-@media(max-width:768px) { body { cursor: auto; } #mu-cursor, #mu-ring { display:none; } }
+/* CURSOR — system default */
 
 /* PAGES */
 .page { display: none; }
@@ -94,6 +78,7 @@ body { cursor: none; }
 /* HERO LINES — two lines on web, natural flow on mobile */
 .hero-line { display: block; }
 @media (max-width: 768px) { .hero-line { display: inline; } .hero-line + .hero-line::before { content: " "; } }
+
 
 /* SCROLLBAR */
 ::-webkit-scrollbar { width: 3px; }
@@ -107,19 +92,20 @@ body { cursor: none; }
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   transition: background 0.4s, box-shadow 0.4s;
   height: 72px;
+  background: #ffffff;
+  border-bottom: 1px solid var(--mu-border);
+  color: var(--mu-darker);
 }
 #nav.solid {
-  background: rgba(255,255,255,0.97);
+  background: #ffffff;
   backdrop-filter: blur(16px);
   box-shadow: 0 1px 0 var(--mu-border);
 }
-#nav.dark-mode {
-  background: transparent;
-}
-#nav.solid.dark-mode {
-  background: rgba(13,36,79,0.96);
-  backdrop-filter: blur(16px);
-}
+#nav.dark-mode { background: #ffffff; color: var(--mu-darker); }
+#nav.solid.dark-mode { background: #ffffff; }
+#nav .nav-link { color: var(--mu-darker) !important; }
+#nav .nav-link:hover { color: var(--mu-primary) !important; }
+
 .nav-inner { max-width:1280px; margin:0 auto; padding:0 40px; height:100%; display:flex; align-items:center; justify-content:space-between; }
 .nav-logo { height: 36px; object-fit: contain; }
 .nav-links { display:flex; align-items:center; gap:32px; }
@@ -135,11 +121,11 @@ body { cursor: none; }
 }
 .nav-link:hover::after, .nav-link.active::after { width:100%; }
 .nav-cta {
-  padding: 10px 22px; border-radius: var(--radius-pill);
+  height: 60px; padding: 0 28px; border-radius: 30px;
   font-size: 13px; font-weight: 500;
   background: var(--mu-primary); color: white;
   text-decoration: none; transition: background 0.2s, transform 0.2s;
-  border: none; cursor: pointer; display: inline-block;
+  border: none; cursor: pointer; display: inline-flex; align-items:center; justify-content:center;
 }
 .nav-cta:hover { background: var(--mu-dark); transform: translateY(-1px); }
 .hamburger { display:none; flex-direction:column; gap:5px; padding:8px; cursor:pointer; background:none; border:none; }
@@ -172,10 +158,10 @@ body { cursor: none; }
 .reveal-d3 { transition-delay:0.3s; }
 .reveal-d4 { transition-delay:0.4s; }
 
-/* BUTTONS - all rounded */
+/* BUTTONS - 60px tall, curved */
 .btn-primary {
-  display:inline-flex; align-items:center; gap:8px;
-  padding: 13px 28px; border-radius: var(--radius-pill);
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  height: 60px; padding: 0 32px; border-radius: 30px;
   background: var(--mu-primary); color: white;
   font-size: 14px; font-weight: 500;
   text-decoration:none; border:none; cursor:pointer;
@@ -184,18 +170,18 @@ body { cursor: none; }
 }
 .btn-primary:hover { background: var(--mu-dark); transform:translateY(-2px); box-shadow:0 8px 24px rgba(20,159,236,0.3); }
 .btn-outline {
-  display:inline-flex; align-items:center; gap:8px;
-  padding: 12px 28px; border-radius: var(--radius-pill);
-  background: transparent; color: white;
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  height: 60px; padding: 0 32px; border-radius: 30px;
+  background: transparent; color: var(--mu-darker);
   font-size: 14px; font-weight: 500;
-  text-decoration:none; border: 1.5px solid rgba(255,255,255,0.3); cursor:pointer;
-  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  text-decoration:none; border: 1.5px solid var(--mu-darker); cursor:pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s, color 0.2s;
   font-family: inherit;
 }
-.btn-outline:hover { background: rgba(255,255,255,0.08); border-color:white; transform:translateY(-2px); }
+.btn-outline:hover { background: var(--mu-darker); color:white; transform:translateY(-2px); }
 .btn-dark {
-  display:inline-flex; align-items:center; gap:8px;
-  padding: 13px 28px; border-radius: var(--radius-pill);
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  height: 60px; padding: 0 32px; border-radius: 30px;
   background: var(--mu-darker); color: white;
   font-size: 14px; font-weight: 500;
   text-decoration:none; border:none; cursor:pointer;
@@ -204,8 +190,8 @@ body { cursor: none; }
 }
 .btn-dark:hover { background: var(--mu-dark); transform:translateY(-2px); }
 .btn-ghost {
-  display:inline-flex; align-items:center; gap:8px;
-  padding: 12px 28px; border-radius: var(--radius-pill);
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  height: 60px; padding: 0 32px; border-radius: 30px;
   background: transparent; color: var(--mu-primary);
   font-size: 14px; font-weight: 500;
   text-decoration:none; border: 1.5px solid var(--mu-primary); cursor:pointer;
@@ -213,6 +199,7 @@ body { cursor: none; }
   font-family: inherit;
 }
 .btn-ghost:hover { background: var(--mu-primary); color: white; transform:translateY(-2px); }
+
 
 /* CARDS */
 .card {
@@ -279,6 +266,9 @@ body { cursor: none; }
   background: linear-gradient(135deg, #0D244F 0%, #0A3462 55%, #0d3570 100%);
   position:relative; overflow:hidden;
 }
+.hero-bg.hero-cyan { background: #CDFFFD; }
+
+
 .hero-grid {
   position:absolute; inset:0; opacity:0.04;
   background-image:
@@ -437,7 +427,7 @@ body { cursor: none; }
 <div id="page-home" class="page active">
 
   <!-- HERO -->
-  <section class="hero-bg" style="min-height:100vh; display:flex; align-items:center;">
+  <section class="hero-bg hero-cyan" style="min-height:100vh; display:flex; align-items:center;">
     <div class="hero-grid"></div>
     <div class="hero-glow" style="width:500px;height:500px;background:radial-gradient(circle,rgba(20,159,236,0.18),transparent);top:-100px;right:-100px;animation:float 10s ease-in-out infinite;"></div>
     <div class="hero-glow" style="width:300px;height:300px;background:radial-gradient(circle,rgba(240,113,40,0.12),transparent);bottom:100px;left:5%;animation:float 14s ease-in-out infinite reverse;"></div>
@@ -446,52 +436,54 @@ body { cursor: none; }
       <div style="display:grid;grid-template-columns:1fr 420px;gap:60px;align-items:center;">
 
         <div>
-          <p class="ey reveal" style="color:rgba(20,159,236,0.8);margin-bottom:20px;">Brand Strategy · Communications · Design</p>
-          <h1 class="reveal reveal-d1" style="font-size:clamp(2.6rem,5.5vw,5rem);font-weight:600;color:white;line-height:1.08;margin-bottom:24px;letter-spacing:-0.02em;">
-            <span class="hero-line">Where African ambition meets</span>
-            <span class="hero-line"><span style="color:var(--mu-primary);">world-class strategy.</span></span>
+          <p class="ey reveal" style="color:var(--mu-primary);margin-bottom:20px;">Brand Strategy · Communications · Design</p>
+          <h1 class="reveal reveal-d1" style="font-size:clamp(2.6rem,5.5vw,5rem);font-weight:600;color:var(--mu-darker);line-height:1.08;margin-bottom:24px;letter-spacing:-0.02em;">
+            <span class="hero-line">Where African ambition</span>
+            <span class="hero-line">meets <span style="color:var(--mu-primary);">world-class strategy.</span></span>
           </h1>
-          <p class="reveal reveal-d2" style="font-size:1.05rem;color:rgba(255,255,255,0.5);line-height:1.75;max-width:520px;margin-bottom:36px;">
+          <p class="reveal reveal-d2" style="font-size:1.05rem;color:rgba(13,36,79,0.7);line-height:1.75;max-width:520px;margin-bottom:36px;">
             We help founders, organisations, and institutions build brands that lead — communicate clearly so their value becomes visible, so their work can create the impact it deserves.
           </p>
           <div class="reveal reveal-d3" style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;">
             <button onclick="go('work')" class="btn-primary">See Our Work →</button>
             <button onclick="go('contact')" class="btn-outline">Start a Conversation</button>
           </div>
-          <p class="reveal reveal-d4" style="margin-top:28px;font-size:12px;color:rgba(255,255,255,0.2);letter-spacing:0.12em;text-transform:uppercase;">Together we can be moore.</p>
+          <p class="reveal reveal-d4" style="margin-top:28px;font-size:12px;color:rgba(13,36,79,0.45);letter-spacing:0.12em;text-transform:uppercase;">Together we can be moore.</p>
         </div>
 
         <div class="reveal reveal-d2" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-          <div style="border-radius:20px;overflow:hidden;background:linear-gradient(135deg,rgba(20,159,236,0.2),rgba(10,52,98,0.4));border:1px solid rgba(20,159,236,0.15);padding:24px;display:flex;flex-direction:column;justify-content:flex-end;min-height:200px;">
+          <div style="border-radius:20px;overflow:hidden;background:linear-gradient(135deg,rgba(20,159,236,0.35),rgba(10,52,98,0.85)),url('https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=600&q=70') center/cover;border:1px solid rgba(20,159,236,0.2);padding:24px;display:flex;flex-direction:column;justify-content:flex-end;min-height:200px;">
             <span class="tag-dark" style="margin-bottom:8px;width:fit-content;">Healthcare</span>
             <p style="color:white;font-size:13px;font-weight:500;">Folks Medical</p>
-            <p style="color:rgba(255,255,255,0.4);font-size:11px;margin-top:2px;">Brand Strategy</p>
+            <p style="color:rgba(255,255,255,0.6);font-size:11px;margin-top:2px;">Brand Strategy</p>
           </div>
-          <div style="border-radius:20px;overflow:hidden;background:linear-gradient(135deg,rgba(240,113,40,0.2),rgba(249,197,11,0.1));border:1px solid rgba(240,113,40,0.15);padding:24px;display:flex;flex-direction:column;justify-content:flex-end;min-height:200px;margin-top:24px;">
+          <div style="border-radius:20px;overflow:hidden;background:linear-gradient(135deg,rgba(240,113,40,0.55),rgba(44,22,84,0.85)),url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=600&q=70') center/cover;border:1px solid rgba(240,113,40,0.2);padding:24px;display:flex;flex-direction:column;justify-content:flex-end;min-height:200px;margin-top:24px;">
             <span class="tag-dark" style="margin-bottom:8px;width:fit-content;">NGO</span>
             <p style="color:white;font-size:13px;font-weight:500;">Catholic Relief Services</p>
-            <p style="color:rgba(255,255,255,0.4);font-size:11px;margin-top:2px;">Communications</p>
+            <p style="color:rgba(255,255,255,0.6);font-size:11px;margin-top:2px;">Communications</p>
           </div>
-          <div style="border-radius:20px;overflow:hidden;background:linear-gradient(135deg,rgba(42,255,255,0.1),rgba(10,52,98,0.3));border:1px solid rgba(42,255,255,0.1);padding:24px;display:flex;flex-direction:column;justify-content:flex-end;min-height:160px;">
+          <div style="border-radius:20px;overflow:hidden;background:linear-gradient(135deg,rgba(42,255,255,0.25),rgba(10,52,98,0.9)),url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=70') center/cover;border:1px solid rgba(42,255,255,0.15);padding:24px;display:flex;flex-direction:column;justify-content:flex-end;min-height:160px;">
             <span class="tag-dark" style="margin-bottom:8px;width:fit-content;">Technology</span>
             <p style="color:white;font-size:13px;font-weight:500;">VaultGenic</p>
-            <p style="color:rgba(255,255,255,0.4);font-size:11px;margin-top:2px;">Brand Identity</p>
+            <p style="color:rgba(255,255,255,0.6);font-size:11px;margin-top:2px;">Brand Identity</p>
           </div>
-          <div style="border-radius:20px;overflow:hidden;background:linear-gradient(135deg,rgba(205,255,253,0.1),rgba(20,159,236,0.2));border:1px solid rgba(205,255,253,0.1);padding:24px;display:flex;flex-direction:column;justify-content:flex-end;min-height:160px;margin-top:-24px;">
+          <div style="border-radius:20px;overflow:hidden;background:linear-gradient(135deg,rgba(205,255,253,0.2),rgba(20,159,236,0.85)),url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=600&q=70') center/cover;border:1px solid rgba(205,255,253,0.2);padding:24px;display:flex;flex-direction:column;justify-content:flex-end;min-height:160px;margin-top:-24px;">
             <span class="tag-dark" style="margin-bottom:8px;width:fit-content;">Resources</span>
             <p style="color:white;font-size:13px;font-weight:500;">Bacceferous</p>
-            <p style="color:rgba(255,255,255,0.4);font-size:11px;margin-top:2px;">Identity Design</p>
+            <p style="color:rgba(255,255,255,0.6);font-size:11px;margin-top:2px;">Identity Design</p>
           </div>
         </div>
+
       </div>
     </div>
 
     <div style="position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;z-index:2;">
-      <span style="color:rgba(255,255,255,0.3);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;">Scroll</span>
-      <div style="width:1px;height:48px;background:rgba(255,255,255,0.15);overflow:hidden;border-radius:9999px;">
+      <span style="color:rgba(13,36,79,0.5);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;">Scroll</span>
+      <div style="width:1px;height:48px;background:rgba(13,36,79,0.15);overflow:hidden;border-radius:9999px;">
         <div style="width:100%;height:40%;background:var(--mu-primary);border-radius:9999px;animation:scrollPulse 2s ease-in-out infinite;"></div>
       </div>
     </div>
+
   </section>
 
   <!-- MARQUEE STRIP -->
@@ -583,7 +575,7 @@ body { cursor: none; }
 
         <!-- Large feature card -->
         <div class="work-card reveal" onclick="go('case-study-folks')" style="grid-column:1/3;min-height:420px;">
-          <div class="wc-inner" style="background:linear-gradient(135deg,#0D244F 0%,#0A3462 50%,#114478 100%);min-height:420px;display:flex;flex-direction:column;justify-content:flex-end;padding:32px;">
+          <div class="wc-inner" style="background:linear-gradient(135deg,rgba(13,36,79,0.85),rgba(10,52,98,0.7),rgba(17,68,120,0.85)),url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1200&q=70') center/cover;min-height:420px;display:flex;flex-direction:column;justify-content:flex-end;padding:32px;">
             <div style="position:absolute;inset:0;opacity:0.08;background-image:repeating-linear-gradient(45deg,rgba(20,159,236,0.6) 0,rgba(20,159,236,0.6) 1px,transparent 0,transparent 50%);background-size:20px 20px;border-radius:var(--radius-lg);"></div>
           </div>
           <div class="wc-tag-always">
@@ -600,7 +592,7 @@ body { cursor: none; }
 
         <div style="display:flex;flex-direction:column;gap:16px;">
           <div class="work-card reveal reveal-d1" onclick="go('case-study-vault')" style="flex:1;min-height:196px;">
-            <div class="wc-inner" style="background:linear-gradient(135deg,#F07128,#F9C50B);min-height:196px;"></div>
+            <div class="wc-inner" style="background:linear-gradient(135deg,rgba(240,113,40,0.78),rgba(249,197,11,0.65)),url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=70') center/cover;min-height:196px;"></div>
             <div class="wc-tag-always" style="bottom:16px;left:16px;">
               <span class="tag-dark">Technology</span>
             </div>
@@ -612,7 +604,7 @@ body { cursor: none; }
             </div>
           </div>
           <div class="work-card reveal reveal-d2" onclick="go('case-study-bacc')" style="flex:1;min-height:196px;">
-            <div class="wc-inner" style="background:linear-gradient(135deg,#0D244F,#2AFFFF22);border:1px solid var(--mu-border);min-height:196px;"></div>
+            <div class="wc-inner" style="background:linear-gradient(135deg,rgba(13,36,79,0.85),rgba(42,255,255,0.35)),url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=900&q=70') center/cover;border:1px solid var(--mu-border);min-height:196px;"></div>
             <div class="wc-tag-always" style="bottom:16px;left:16px;">
               <span class="tag-dark">Oil &amp; Gas</span>
             </div>
@@ -626,7 +618,7 @@ body { cursor: none; }
         </div>
 
         <div class="work-card reveal reveal-d1" onclick="go('case-study-healing')" style="min-height:220px;">
-          <div class="wc-inner" style="background:linear-gradient(135deg,#1a4a30,#CDFFFD22);min-height:220px;"></div>
+          <div class="wc-inner" style="background:linear-gradient(135deg,rgba(26,74,48,0.82),rgba(205,255,253,0.3)),url('https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=900&q=70') center/cover;min-height:220px;"></div>
           <div class="wc-tag-always" style="bottom:16px;left:16px;"><span class="tag-dark">Healthcare</span></div>
           <div class="wc-overlay"></div>
           <div class="wc-meta">
@@ -636,7 +628,7 @@ body { cursor: none; }
           </div>
         </div>
         <div class="work-card reveal reveal-d2" onclick="go('work')" style="min-height:220px;">
-          <div class="wc-inner" style="background:linear-gradient(135deg,#2c1654,#F07128);min-height:220px;"></div>
+          <div class="wc-inner" style="background:linear-gradient(135deg,rgba(44,22,84,0.8),rgba(240,113,40,0.7)),url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=900&q=70') center/cover;min-height:220px;"></div>
           <div class="wc-tag-always" style="bottom:16px;left:16px;"><span class="tag-dark">NGO · Development</span></div>
           <div class="wc-overlay"></div>
           <div class="wc-meta">
@@ -646,7 +638,7 @@ body { cursor: none; }
           </div>
         </div>
         <div class="work-card reveal reveal-d3" onclick="go('work')" style="min-height:220px;">
-          <div class="wc-inner" style="background:linear-gradient(135deg,#3d1000,#F9C50B33);min-height:220px;"></div>
+          <div class="wc-inner" style="background:linear-gradient(135deg,rgba(61,16,0,0.82),rgba(249,197,11,0.4)),url('https://images.unsplash.com/photo-1582482942879-92f7f794d7d3?auto=format&fit=crop&w=900&q=70') center/cover;min-height:220px;"></div>
           <div class="wc-tag-always" style="bottom:16px;left:16px;"><span class="tag-dark">Mining</span></div>
           <div class="wc-overlay"></div>
           <div class="wc-meta">
@@ -850,7 +842,7 @@ body { cursor: none; }
           </div>
         </div>
         <div class="work-card reveal reveal-d1" data-cat="resources" onclick="go('case-study-bacc')" style="min-height:300px;">
-          <div class="wc-inner" style="background:linear-gradient(135deg,#F07128,#F9C50B);min-height:300px;"></div>
+          <div class="wc-inner" style="background:linear-gradient(135deg,rgba(240,113,40,0.78),rgba(249,197,11,0.65)),url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=70') center/cover;min-height:300px;"></div>
           <div class="wc-tag-always" style="bottom:20px;left:20px;"><span class="tag-dark">Oil &amp; Gas</span></div>
           <div class="wc-overlay"></div>
           <div class="wc-meta">
@@ -1685,7 +1677,7 @@ Something that felt right about the final system: patients didn't describe it as
             </div>
           </div>
           <div class="partner-logo" onclick="go('case-study-bacc')" style="cursor:pointer;flex-direction:column;gap:12px;">
-            <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#F07128,#F9C50B);display:flex;align-items:center;justify-content:center;color:white;font-weight:600;font-size:14px;">BA</div>
+            <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,rgba(240,113,40,0.78),rgba(249,197,11,0.65)),url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=70') center/cover;display:flex;align-items:center;justify-content:center;color:white;font-weight:600;font-size:14px;">BA</div>
             <div style="text-align:center;">
               <p style="font-weight:600;font-size:14px;color:var(--mu-darker);">Bacceferous</p>
               <p style="font-size:11px;color:var(--mu-muted);margin-top:2px;">Identity Design</p>
@@ -1794,7 +1786,7 @@ Something that felt right about the final system: patients didn't describe it as
       <!-- Article Grid -->
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
         <div class="insight-card reveal">
-          <div style="height:180px;background:linear-gradient(135deg,#F07128,#F9C50B);"></div>
+          <div style="height:180px;background:linear-gradient(135deg,rgba(240,113,40,0.78),rgba(249,197,11,0.65)),url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=70') center/cover;"></div>
           <div style="padding:28px;">
             <span class="tag" style="background:rgba(240,113,40,0.1);color:var(--mu-a3);margin-bottom:12px;display:inline-block;">Communications</span>
             <h3 style="font-size:1.05rem;font-weight:600;color:var(--mu-darker);line-height:1.35;margin-bottom:10px;">The myth of the "simple message"</h3>
