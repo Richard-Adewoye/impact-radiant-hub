@@ -91,6 +91,10 @@ body { cursor: none; }
 .page.active { display: block; animation: pgIn 0.45s var(--ease); }
 @keyframes pgIn { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
 
+/* HERO LINES — two lines on web, natural flow on mobile */
+.hero-line { display: block; }
+@media (max-width: 768px) { .hero-line { display: inline; } .hero-line + .hero-line::before { content: " "; } }
+
 /* SCROLLBAR */
 ::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-thumb { background: var(--mu-primary); border-radius: 9999px; }
