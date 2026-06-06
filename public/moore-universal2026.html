@@ -121,7 +121,7 @@ body {
 }
 .nav-link:hover::after, .nav-link.active::after { width:100%; }
 .nav-cta {
-  height: 60px; padding: 0 28px; border-radius: 30px;
+  height: 48px; padding: 0 28px; border-radius: 12px;
   font-size: 13px; font-weight: 500;
   background: var(--mu-primary); color: white;
   text-decoration: none; transition: background 0.2s, transform 0.2s;
@@ -158,10 +158,10 @@ body {
 .reveal-d3 { transition-delay:0.3s; }
 .reveal-d4 { transition-delay:0.4s; }
 
-/* BUTTONS - 60px tall, curved */
+/* BUTTONS - 48px tall, 12px radius */
 .btn-primary {
   display:inline-flex; align-items:center; justify-content:center; gap:8px;
-  height: 60px; padding: 0 32px; border-radius: 30px;
+  height: 48px; padding: 0 28px; border-radius: 12px;
   background: var(--mu-primary); color: white;
   font-size: 14px; font-weight: 500;
   text-decoration:none; border:none; cursor:pointer;
@@ -171,7 +171,7 @@ body {
 .btn-primary:hover { background: var(--mu-dark); transform:translateY(-2px); box-shadow:0 8px 24px rgba(20,159,236,0.3); }
 .btn-outline {
   display:inline-flex; align-items:center; justify-content:center; gap:8px;
-  height: 60px; padding: 0 32px; border-radius: 30px;
+  height: 48px; padding: 0 28px; border-radius: 12px;
   background: transparent; color: var(--mu-darker);
   font-size: 14px; font-weight: 500;
   text-decoration:none; border: 1.5px solid var(--mu-darker); cursor:pointer;
@@ -181,7 +181,7 @@ body {
 .btn-outline:hover { background: var(--mu-darker); color:white; transform:translateY(-2px); }
 .btn-dark {
   display:inline-flex; align-items:center; justify-content:center; gap:8px;
-  height: 60px; padding: 0 32px; border-radius: 30px;
+  height: 48px; padding: 0 28px; border-radius: 12px;
   background: var(--mu-darker); color: white;
   font-size: 14px; font-weight: 500;
   text-decoration:none; border:none; cursor:pointer;
@@ -191,7 +191,7 @@ body {
 .btn-dark:hover { background: var(--mu-dark); transform:translateY(-2px); }
 .btn-ghost {
   display:inline-flex; align-items:center; justify-content:center; gap:8px;
-  height: 60px; padding: 0 32px; border-radius: 30px;
+  height: 48px; padding: 0 28px; border-radius: 12px;
   background: transparent; color: var(--mu-primary);
   font-size: 14px; font-weight: 500;
   text-decoration:none; border: 1.5px solid var(--mu-primary); cursor:pointer;
@@ -535,9 +535,9 @@ body {
   </section>
 
   <!-- PARTNER LOGOS STRIP (animated) -->
-  <section style="background:#ffffff;border-top:1px solid var(--mu-border);border-bottom:1px solid var(--mu-border);overflow:hidden;padding:36px 0;">
+  <section style="background:var(--mu-darker);border-top:1px solid rgba(255,255,255,0.08);border-bottom:1px solid rgba(255,255,255,0.08);overflow:hidden;padding:36px 0;">
     <div class="container" style="margin-bottom:20px;">
-      <p style="text-align:center;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--mu-muted);">Trusted by organisations across sectors</p>
+      <p style="text-align:center;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.5);">Trusted by organisations across sectors</p>
     </div>
     <div style="display:flex;width:max-content;animation:marquee 40s linear infinite;align-items:center;">
       <img src="/assets/partner-logos.svg" alt="Partner logos" style="height:48px;width:auto;display:block;margin-right:64px;opacity:0.85;"/>
